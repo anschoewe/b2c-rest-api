@@ -33,7 +33,7 @@ spec:
         readinessProbe:
           httpGet:
             path: /
-            port: 8080
+            port: 8901
             initialDelaySeconds: 10
             periodSeconds: 5
             successThreshold: 1
@@ -58,11 +58,8 @@ metadata:
 spec:
   type: LoadBalancer
   ports:
-  - port: 80
+  - port: 8901
     targetPort: 8080
     name: http
-  - port: 443
-    targetPort: 8443
-    name: https
   selector:
     app: rest-api
