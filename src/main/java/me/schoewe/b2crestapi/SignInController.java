@@ -1,5 +1,7 @@
 package me.schoewe.b2crestapi;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,8 +16,8 @@ public class SignInController
 		return "hello";
 	}
 	
-	@RequestMapping(method = RequestMethod.GET, path = "/doesUserExist")
-	public boolean doesUserExist() {
-		return true;
+	@RequestMapping(method = {RequestMethod.GET, RequestMethod.POST } , path = "/doesUserExist")
+	public ResponseEntity<?> doesUserExist() {
+		return new ResponseEntity<>("{ 'msg': 'duplicate' }", HttpStatus.CONFLICT);
 	}
 }

@@ -1,5 +1,6 @@
 package me.schoewe.b2crestapi;
 
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -13,15 +14,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	 */
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		// @formatter:off
-		http
-			.x509()
-			.and()
-			.sessionManagement()
-			.sessionCreationPolicy(SessionCreationPolicy.NEVER)
-			.and()
-			.csrf()
-			.disable();
+		http.
+			authorizeRequests().antMatchers(HttpMethod.POST, "/**").permitAll()
+		.and()
+			.authorizeRequests().antMatchers(HttpMethod.GET, "/**").permitAll()
+		.and()
+			.cors()
+		.and().
+			csrf().disable();
+		
+		
+//		http.
+//			.x509()
+//			.and()
+//			.sessionManagement()
+//			.sessionCreationPolicy(SessionCreationPolicy.NEVER)
+//			.and()
+//			.csrf()
+//			.disable();
 	}
 
 	/*
