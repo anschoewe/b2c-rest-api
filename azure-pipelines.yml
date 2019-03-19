@@ -14,16 +14,17 @@ variables:
     azureContainerRegistry: myacrschoewe.azurecr.io
 
 steps:
-- task: Maven@3
+- task: Gradle@2
   inputs:
-    mavenPomFile: 'pom.xml'
-    mavenOptions: '-Xmx3072m'
+    workingDirectory: ''
+    gradleWrapperFile: 'gradlew'
+    gradleOptions: '-Xmx3072m'
     javaHomeOption: 'JDKVersion'
     jdkVersionOption: '1.8'
     jdkArchitectureOption: 'x64'
     publishJUnitResults: false
-    testResultsFiles: '**/surefire-reports/TEST-*.xml'
-    goals: 'package'
+    testResultsFiles: '**/TEST-*.xml'
+    tasks: 'build'
 - task: Docker@1
   displayName: Container registry login
   inputs:
