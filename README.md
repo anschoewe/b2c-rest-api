@@ -31,6 +31,9 @@ openssl req \
     -out clientCA.crt
 ```
 
+# Bundle client public/pricate keys into a p12 file so that we can upload it to B2C
+`openssl pkcs12 -export -in clientCA.crt -inkey clientprivate.key -certfile clientCA.crt -out client.p12 -passin pass:client -passout pass:changeit`
+
 # Generate Java truststore that will store the public/private keys (cert) to validate the cert presented by client calling
 `keytool -import -file clientCA.crt -alias clientCA -keystore truststore.p12 -storetype pkcs12`
 
