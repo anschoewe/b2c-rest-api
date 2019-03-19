@@ -28,8 +28,7 @@ spec:
             cpu: 250m
             memory: 256Mi
         ports:
-        - containerPort: 8443
-        - containerPort: 8080
+        - containerPort: 8901
         readinessProbe:
           httpGet:
             path: /
@@ -58,8 +57,8 @@ metadata:
 spec:
   type: LoadBalancer
   ports:
-  - port: 8901
-    targetPort: 8080
+  - port: 80
+    targetPort: 8901
     name: http
   selector:
     app: rest-api
