@@ -12,6 +12,7 @@ pool:
 variables:
     azureSubscriptionEndpoint: pipelines-resource-manager
     azureContainerRegistry: myacrschoewe.azurecr.io
+    acrSubscriptionEndpoint: acr-service-account
 
 steps:
 - task: Gradle@2
@@ -29,7 +30,7 @@ steps:
   displayName: Container registry login
   inputs:
     command: login
-    azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
+    azureSubscriptionEndpoint: $(acrSubscriptionEndpoint)
     azureContainerRegistry: $(azureContainerRegistry)
 - task: Docker@1
   displayName: Build Docker Image with Java app
@@ -49,7 +50,7 @@ steps:
   displayName: Push image
   inputs:
     command: push
-    azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
+    azureSubscriptionEndpoint: $(acrSubscriptionEndpoint)
     azureContainerRegistry: $(azureContainerRegistry)
     imageName: $(Build.Repository.Name):$(Build.BuildId)
 - task: qetza.replacetokens.replacetokens-task.replacetokens@3

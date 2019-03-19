@@ -28,12 +28,11 @@ spec:
             cpu: 250m
             memory: 256Mi
         ports:
-        - containerPort: 8443
-        - containerPort: 8080
+        - containerPort: 8901
         readinessProbe:
           httpGet:
             path: /
-            port: 8080
+            port: 8901
             initialDelaySeconds: 10
             periodSeconds: 5
             successThreshold: 1
@@ -59,10 +58,7 @@ spec:
   type: LoadBalancer
   ports:
   - port: 80
-    targetPort: 8080
+    targetPort: 8901
     name: http
-  - port: 443
-    targetPort: 8443
-    name: https
   selector:
     app: rest-api
