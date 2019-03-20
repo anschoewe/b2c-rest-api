@@ -33,8 +33,8 @@ spec:
           httpGet:
             path: /
             port: 8901
-            scheme: https
-            initialDelaySeconds: 10
+            scheme: HTTPS
+            initialDelaySeconds: 55
             periodSeconds: 5
             successThreshold: 1
         env:
@@ -58,8 +58,8 @@ metadata:
 spec:
   type: LoadBalancer
   ports:
-  - port: 80
+  - port: 443
     targetPort: 8901
-    name: http
+    name: https
   selector:
     app: rest-api
