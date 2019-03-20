@@ -13,11 +13,15 @@ public class SignInController
 	
 	@RequestMapping("/")
 	public String home() {
+		System.out.println("in home");
+		System.out.println(System.getProperty("buildNum"));
 		return "hello";
 	}
 	
 	@RequestMapping(method = {RequestMethod.GET, RequestMethod.POST } , path = "/doesUserExist")
 	public ResponseEntity<?> doesUserExist() {
+		System.out.println("in doesUserExist");
+		System.out.println(System.getProperty("buildNum"));
 		return new ResponseEntity<>("{ 'msg': 'duplicate' }", HttpStatus.CONFLICT);
 	}
 }
