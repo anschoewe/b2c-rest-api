@@ -38,8 +38,8 @@ spec:
             periodSeconds: 5
             successThreshold: 1
         env:
-        - name: KEY
-          value: "value"
+        - name: buildNum
+          value: "#{Build.BuildId}#"
 ---
 apiVersion: policy/v1beta1
 kind: PodDisruptionBudget
