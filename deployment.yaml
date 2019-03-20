@@ -60,6 +60,6 @@ spec:
   ports:
   - port: 80
     targetPort: 8901
-    name: http
+    name: https
   selector:
     app: rest-api
