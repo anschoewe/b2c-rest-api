@@ -33,6 +33,7 @@ spec:
           httpGet:
             path: /
             port: 8901
+            scheme: https
             initialDelaySeconds: 10
             periodSeconds: 5
             successThreshold: 1
