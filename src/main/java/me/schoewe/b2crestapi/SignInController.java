@@ -22,7 +22,7 @@ public class SignInController
 	public ResponseEntity<?> doesUserExist() {
 		System.out.println("in doesUserExist");
 		System.out.println(System.getProperty("buildNum"));
-		return new ResponseEntity<>("{ 'msg': 'original' }", HttpStatus.OK);
-//		return new ResponseEntity<>("{ 'msg': 'duplicate' }", HttpStatus.CONFLICT);
+//		return new ResponseEntity<>("{ 'msg': 'original' }", HttpStatus.OK);
+		return new ResponseEntity<>("{ 'msg': 'duplicate' }", HttpStatus.CONFLICT);
 	}
 }
