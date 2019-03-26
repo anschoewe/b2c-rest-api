@@ -42,5 +42,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.inMemoryAuthentication().withUser("localhost").password("none").roles("USER");
 	}
+	
+	
 
 }

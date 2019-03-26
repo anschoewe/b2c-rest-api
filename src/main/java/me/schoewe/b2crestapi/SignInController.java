@@ -18,7 +18,7 @@ public class SignInController
 	public ResponseEntity<?> doesUserExist() {
 		logger.info("in doesUserExist");
 		logger.info(System.getProperty("buildNum"));
-//		return new ResponseEntity<>("{ 'msg': 'original' }", HttpStatus.OK);
-		return new ResponseEntity<>("{ 'msg': 'duplicate' }", HttpStatus.CONFLICT);
+		return new ResponseEntity<>("{ 'msg': 'original' }", HttpStatus.OK);
+//		return new ResponseEntity<>("{ 'msg': 'duplicate' }", HttpStatus.CONFLICT);
 	}
 }
