@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(path = {"/signin",  "/"})
+@RequestMapping(path = {"/signin"})
 public class SignInController
 {
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
