@@ -14,13 +14,6 @@ public class SignInController
 {
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	
-	@RequestMapping("/")
-	public String home() {
-		logger.info("in home");
-		logger.info(System.getProperty("buildNum"));
-		return "hello";
-	}
-	
 	@RequestMapping(method = {RequestMethod.GET, RequestMethod.POST } , path = "/doesUserExist")
 	public ResponseEntity<?> doesUserExist() {
 		logger.info("in doesUserExist");
