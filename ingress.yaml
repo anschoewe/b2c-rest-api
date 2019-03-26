@@ -5,7 +5,8 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
     certmanager.k8s.io/cluster-issuer: letsencrypt-prod
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/rewrite-target: $1
+    nginx.ingress.kubernetes.io/use-regex: "true"
 spec:
   tls:
   - hosts:
@@ -15,7 +16,7 @@ spec:
   - host: aks4-schoewe.eastus.cloudapp.azure.com
     http:
       paths:
-      - path: /signin
+      - path: /b2c(/.*)
         backend:
           serviceName: rest-api
           servicePort: 80
