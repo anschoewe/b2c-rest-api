@@ -1,7 +1,9 @@
 package me.schoewe.b2crestapi;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.MediaType;
 import org.springframework.util.AntPathMatcher;
+import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
 import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -14,4 +16,11 @@ public class WebConfig implements WebMvcConfigurer {
         matcher.setCaseSensitive(false);
         configurer.setPathMatcher(matcher);
     }
+
+	@Override
+	public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
+		 configurer.defaultContentType(MediaType.APPLICATION_JSON);
+	}
+ 
+
 }
