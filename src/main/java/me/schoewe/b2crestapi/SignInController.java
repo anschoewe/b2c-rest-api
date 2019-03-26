@@ -1,5 +1,7 @@
 package me.schoewe.b2crestapi;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,18 +12,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(path = {"/signin",  "/"})
 public class SignInController
 {
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	@RequestMapping("/")
 	public String home() {
-		System.out.println("in home");
-		System.out.println(System.getProperty("buildNum"));
+		logger.info("in home");
+		logger.info(System.getProperty("buildNum"));
 		return "hello";
 	}
 	
 	@RequestMapping(method = {RequestMethod.GET, RequestMethod.POST } , path = "/doesUserExist")
 	public ResponseEntity<?> doesUserExist() {
-		System.out.println("in doesUserExist");
-		System.out.println(System.getProperty("buildNum"));
+		logger.info("in doesUserExist");
+		logger.info(System.getProperty("buildNum"));
 //		return new ResponseEntity<>("{ 'msg': 'original' }", HttpStatus.OK);
 		return new ResponseEntity<>("{ 'msg': 'duplicate' }", HttpStatus.CONFLICT);
 	}
