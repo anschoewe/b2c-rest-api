@@ -27,9 +27,9 @@ public class SignInController
 		logger.info(input.toString());
 		
         // Run an input validation
-        if (input.getFirstName().toLowerCase().equals("test")) {
+        if (input.getFirstName().toLowerCase().equals("kimaya")) {
         	return new ResponseEntity<>(
-        			new B2CResponseContent("Test name is not valid, please provide a valid name", HttpStatus.CONFLICT),
+        			new B2CResponseContent("No 'Kimayas' allowed!", HttpStatus.CONFLICT),
         			HttpStatus.CONFLICT);
         }
 
