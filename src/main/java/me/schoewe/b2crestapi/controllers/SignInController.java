@@ -1,4 +1,4 @@
-package me.schoewe.b2crestapi;
+package me.schoewe.b2crestapi.controllers;
 
 import org.json.JSONException;
 import org.slf4j.Logger;
@@ -13,8 +13,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import me.schoewe.b2crestapi.AzureB2CService;
+import me.schoewe.b2crestapi.B2CResponseContent;
 import me.schoewe.b2crestapi.models.InputClaimsModel;
 import me.schoewe.b2crestapi.models.OutputClaimsModel;
+import me.schoewe.b2crestapi.models.SignInInputClaimsModel;
+import me.schoewe.b2crestapi.models.SignInOutputClaimsModel;
 import me.schoewe.b2crestapi.models.UserModel;
 
 @RestController
@@ -27,21 +31,27 @@ public class SignInController
 	private AzureB2CService b2cService;
 	
 	@PostMapping(path= "/signin", consumes = "application/json", produces = "application/json")
-	public ResponseEntity<?> signin(@RequestBody InputClaimsModel input) throws JSONException {
+	public ResponseEntity<?> signin(@RequestBody SignInInputClaimsModel input) throws JSONException {
 
+		logger.info(input.toString());
+		
 		//TODO: Query other IdP to get existing user details
 		
 		UserModel user = new UserModel();
 		user.setFirstName("Fake");
 		user.setLastName("User1");
 		user.setDisplayName("Fake User1");
-		user.setEmail("fake.user1@example.com");
-		user.setPassword("fakeP@ssword1");
+		user.setEmail(input.getSignInName());
+		user.setPassword(input.getPassword());
 		
 		String userId = b2cService.createUser(user);
 
         // Return the output claim(s)
-        return new ResponseEntity<>("{\"userId\": \"" + userId + "\"}", HttpStatus.OK);
+		SignInOutputClaimsModel output = new SignInOutputClaimsModel();
+		output.setEmail(input.getSignInName());
+		output.setUserProfileId(userId);
+		
+        return new ResponseEntity<>(output, HttpStatus.OK);
 	}
 	
 	@PostMapping(path= "/signup", consumes = "application/json", produces = "application/json")
