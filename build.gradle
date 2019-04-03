@@ -20,5 +20,5 @@ dependencies {
 	runtimeOnly 'org.springframework.boot:spring-boot-devtools'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 //	testImplementation 'org.springframework.security:spring-security-test'
-	runtimeOnly 'org.json:json:20080701'
+	compile 'org.json:json:20180813'
 }
