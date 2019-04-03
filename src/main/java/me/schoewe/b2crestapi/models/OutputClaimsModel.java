@@ -1,4 +1,4 @@
-package me.schoewe.b2crestapi;
+package me.schoewe.b2crestapi.models;
 
 public class OutputClaimsModel {
 	private String loyaltyNumber;

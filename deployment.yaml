@@ -40,6 +40,11 @@ spec:
         env:
         - name: buildNum
           value: "#{Build.BuildId}#"
+        - name: client-secret
+          valueFrom:
+            secretKeyRef:
+              name: rest-api-oauth2-secret
+              key: client_secret
 ---
 apiVersion: policy/v1beta1
 kind: PodDisruptionBudget

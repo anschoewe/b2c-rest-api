@@ -1,0 +1,30 @@
+logging:
+  level:
+    root: INFO
+server:
+  port: 8901
+#server.ssl.key-store=keystore.p12
+#server.ssl.key-store-password=changeit
+#server.ssl.key-store-type=PKCS12
+#server.ssl.trust-store=truststore.p12
+#server.ssl.trust-store-password=changeit
+#server.ssl.trust-store-type=PKCS12
+#server.ssl.client-auth=need
+
+spring:
+  main:
+    allow-bean-definition-overriding: true
+
+security:
+  basic.enabled: false
+  sessions: stateless
+  oauth2:
+    client:
+      id: 'azure-b2c-graph-api'
+      grant-type: client_credentials
+      client-id: ac5cd8a1-9b69-45dd-84d5-7775384c715e
+      client-secret: ${client-secret}
+      scope: myscope
+      access-token-uri: https://login.microsoftonline.com/schoeweb2c.onmicrosoft.com/oauth2/token
+#    resource:
+#      jwt.key-uri: http://someuri/oauth/token_key
