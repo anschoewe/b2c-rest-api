@@ -34,7 +34,7 @@ spec:
             path: /
             port: 8901
             scheme: HTTP
-            initialDelaySeconds: 55
+            initialDelaySeconds: 90
             periodSeconds: 5
             successThreshold: 1
         env:
