@@ -2,17 +2,17 @@ package me.schoewe.b2crestapi.models;
 
 public class SignInInputClaimsModel
 {
-    private String signInName;
+    private String email;
     private String password;
     private String action;
     
    
-	public String getSignInName() {
-		return signInName;
+	public String getEmail() {
+		return email;
 	}
 	
-	public void setSignInName(String signInName) {
-		this.signInName = signInName;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getPassword() {
@@ -33,7 +33,7 @@ public class SignInInputClaimsModel
 	
 	@Override
 	public String toString() {
-		return "SignInInputClaimsModel [" + getSignInName() + "," + getAction() + "]";
+		return "SignInInputClaimsModel [" + getEmail() + "," + getAction() + "]";
 	}
     
     

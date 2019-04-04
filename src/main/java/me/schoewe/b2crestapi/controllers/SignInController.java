@@ -21,6 +21,8 @@ import me.schoewe.b2crestapi.models.SignInInputClaimsModel;
 import me.schoewe.b2crestapi.models.SignInOutputClaimsModel;
 import me.schoewe.b2crestapi.models.UserModel;
 
+import org.apache.commons.lang3.StringUtils;
+
 @RestController
 @RequestMapping(path = {"/signin"})
 public class SignInController
@@ -32,6 +34,12 @@ public class SignInController
 	
 	@PostMapping(path= "/signin", consumes = "application/json", produces = "application/json")
 	public ResponseEntity<?> signin(@RequestBody SignInInputClaimsModel input) throws JSONException {
+		
+		if(!StringUtils.equalsAnyIgnoreCase("signin", input.getAction())) {
+			String msg = "Expected action 'signin'.  Invalid action: " + StringUtils.trimToEmpty(input.getAction());
+			logger.info(msg);
+			throw new IllegalArgumentException(msg);
+		}
 
 		logger.info(input.toString());
 		
@@ -41,14 +49,14 @@ public class SignInController
 		user.setFirstName("Fake");
 		user.setLastName("User1");
 		user.setDisplayName("Fake User1");
-		user.setEmail(input.getSignInName());
+		user.setEmail(input.getEmail());
 		user.setPassword(input.getPassword());
 		
 		String userId = b2cService.createUser(user);
 
         // Return the output claim(s)
 		SignInOutputClaimsModel output = new SignInOutputClaimsModel();
-		output.setEmail(input.getSignInName());
+		output.setEmail(input.getEmail());
 		output.setUserProfileId(userId);
 		
         return new ResponseEntity<>(output, HttpStatus.OK);
