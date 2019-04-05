@@ -33,8 +33,10 @@ public class AzureB2CService {
 		JSONObject request = new JSONObject();
 		request.put("accountEnabled", true);
 		request.put("creationType", "LocalAccount");
+		request.put("givenName", user.getFirstName());
+		request.put("surname", user.getLastName());
 		request.put("displayName", user.getDisplayName());
-		request.put("extension_3997b396a633402aaf9e1ce908484372_OtherIdpUserId", user.getOtherIdpUserId());
+		request.put("extension_3997b396a633402aaf9e1ce908484372_otherIdpUserId", user.getOtherIdpUserId());
 		
 		JSONObject passwordProfile = new JSONObject();
 		passwordProfile.put("password", user.getPassword());
