@@ -34,6 +34,15 @@ public class SignInController
 	
 	@PostMapping(path= "/signin", consumes = "application/json", produces = "application/json")
 	public ResponseEntity<?> signin(@RequestBody SignInInputClaimsModel input) throws JSONException {
+		//////////////////
+		//
+		// Validations
+		//
+		//////////////////
+		if(input == null) {
+			logger.error("input claims are required");
+			throw new IllegalArgumentException("input claims are required");
+		}
 		
 		if(!StringUtils.equalsAnyIgnoreCase("signin", input.getAction())) {
 			String msg = "Expected action 'signin'.  Invalid action: " + StringUtils.trimToEmpty(input.getAction());
@@ -41,15 +50,16 @@ public class SignInController
 			throw new IllegalArgumentException(msg);
 		}
 
+		
 		logger.info(input.toString());
 		
 		//TODO: Query other IdP to get existing user details
-		
 		UserModel user = new UserModel();
 		user.setFirstName("Fake");
 		user.setLastName("User1");
 		user.setDisplayName("Fake User1");
 		user.setEmail(input.getEmail());
+		user.setOtherIdpUserId("externalIdpId_" + input.getEmail());
 		user.setPassword(input.getPassword());
 		
 		String userId = b2cService.createUser(user);

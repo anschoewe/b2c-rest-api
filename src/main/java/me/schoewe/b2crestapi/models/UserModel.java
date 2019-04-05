@@ -13,6 +13,7 @@ public class UserModel implements Serializable {
 	private String password;
 	private String companyId;
 	private String id;
+	private String otherIdpUserId;
 	
 	public String getFirstName() {
 		return firstName;
@@ -55,5 +56,11 @@ public class UserModel implements Serializable {
 	}
 	public void setId(String id) {
 		this.id = id;
+	}
+	public String getOtherIdpUserId() {
+		return otherIdpUserId;
+	}
+	public void setOtherIdpUserId(String otherIdpUserId) {
+		this.otherIdpUserId = otherIdpUserId;
 	}
 }

@@ -34,6 +34,7 @@ public class AzureB2CService {
 		request.put("accountEnabled", true);
 		request.put("creationType", "LocalAccount");
 		request.put("displayName", user.getDisplayName());
+		request.put("extension_3997b396a633402aaf9e1ce908484372_OtherIdpUserId", user.getOtherIdpUserId());
 		
 		JSONObject passwordProfile = new JSONObject();
 		passwordProfile.put("password", user.getPassword());
