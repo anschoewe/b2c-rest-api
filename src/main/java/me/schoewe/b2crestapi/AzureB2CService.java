@@ -39,10 +39,6 @@ public class AzureB2CService {
 //		request.put("extension_3997b396a633402aaf9e1ce908484372_otherIdpUserId", user.getOtherIdpUserId()); //associated with default 'b2c-extensions-app' appId
 		request.put("extension_3b433761de7841a5ae638fdf6577329c_otherIdpUserId", user.getOtherIdpUserId()); //associated with WebApp-GraphAPI-DirectoryExtensions appId
 		
-		JSONArray otherEmails = new JSONArray();
-		otherEmails.put(user.getEmail());
-		request.put("otherMails", otherEmails);
-		
 		JSONObject passwordProfile = new JSONObject();
 		passwordProfile.put("password", user.getPassword());
 		passwordProfile.put("forceChangePasswordNextLogin", false);
