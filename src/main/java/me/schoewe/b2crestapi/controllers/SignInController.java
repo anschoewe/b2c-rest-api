@@ -91,7 +91,7 @@ public class SignInController
 			// user does not exist in legacy IdP, so don't create them in B2C automatically
 			logger.info("Did NOT find user in legacy IdP, will NOT create user in B2C");
 			
-			output.setEmail(input.getEmail());
+			output.setEmail("");
 			output.setUserProfileId("");
 		}
 
