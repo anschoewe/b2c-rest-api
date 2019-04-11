@@ -13,8 +13,7 @@ public class DefaultController {
 	
 	@RequestMapping(path = { "", "/" })
 	public String home() {
-		logger.info("in home");
-		logger.info(System.getProperty("buildNum"));
+		logger.debug("in home");
 		return "hello";
 	}
 
