@@ -72,6 +72,8 @@ public class SignInController
 		SignInOutputClaims output = new SignInOutputClaims();
 		
 		if(StringUtils.equalsAnyIgnoreCase(input.getEmail(), "OtherIdp.User1@example.com")) {
+			logger.info("Found user in legacy IdP, will create user in B2C");
+			
 			UserModel user = new UserModel();
 			user.setFirstName("OtherIdp");
 			user.setLastName("User1");
@@ -87,6 +89,8 @@ public class SignInController
 			output.setUserProfileId(userId);
 		} else {
 			// user does not exist in legacy IdP, so don't create them in B2C automatically
+			logger.info("Did NOT find user in legacy IdP, will NOT create user in B2C");
+			
 			output.setEmail(input.getEmail());
 			output.setUserProfileId("");
 		}
