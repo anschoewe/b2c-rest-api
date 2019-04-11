@@ -38,4 +38,9 @@ public class SignUpCreateRemoteUserInputClaims {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	@Override
+	public String toString() {
+		return "SignUpCreateRemoteUserInputClaims [" + getEmail() + ", " + getFirstName() + ", " + getLastName() + "]";
+	}
 }
