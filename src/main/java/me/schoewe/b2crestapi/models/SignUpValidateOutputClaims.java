@@ -1,6 +1,6 @@
 package me.schoewe.b2crestapi.models;
 
-public class OutputClaimsModel {
+public class SignUpValidateOutputClaims {
 	private String loyaltyNumber;
 
 	public String getLoyaltyNumber() {

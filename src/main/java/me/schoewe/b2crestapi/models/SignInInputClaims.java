@@ -1,6 +1,6 @@
 package me.schoewe.b2crestapi.models;
 
-public class SignInInputClaimsModel
+public class SignInInputClaims
 {
     private String email;
     private String password;

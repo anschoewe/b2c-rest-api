@@ -1,10 +1,11 @@
 package me.schoewe.b2crestapi.models;
 
-public class InputClaimsModel
+public class SignUpValidateInputClaims
 {
     private String email;
     private String firstName;
     private String lastName;
+    private String displayName;
     
     
 	public String getEmail() {
@@ -25,6 +26,13 @@ public class InputClaimsModel
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
+	public String getDisplayName() {
+		return displayName;
+	}
+	public void setDisplayName(String displayName) {
+		this.displayName = displayName;
+	}
+	
 	@Override
 	public String toString() {
 		return "InputClaimsMode [" + getEmail() + ", " + getFirstName() + ", " + getLastName() + "]";
