@@ -2,7 +2,7 @@ package me.schoewe.b2crestapi.models;
 
 import org.springframework.http.HttpStatus;
 
-public class B2CResponseContent
+public abstract class B2CResponseContent
 {
     private String version;
     private int status;
