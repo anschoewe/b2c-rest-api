@@ -1,4 +1,4 @@
-package me.schoewe.b2crestapi;
+package me.schoewe.b2crestapi.models;
 
 import org.springframework.http.HttpStatus;
 
@@ -12,7 +12,7 @@ public class B2CResponseContent
     {
         this.userMessage = message;
         this.status = status.value();
-        this.version = "12333";
+        this.version = "1.0.0";
     }
 
 	public String getVersion() {

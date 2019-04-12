@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import me.schoewe.b2crestapi.AzureB2CService;
-import me.schoewe.b2crestapi.B2CResponseContent;
 import me.schoewe.b2crestapi.models.SignUpValidateInputClaims;
 import me.schoewe.b2crestapi.models.SignUpValidateOutputClaims;
+import me.schoewe.b2crestapi.models.B2CResponseContent;
 import me.schoewe.b2crestapi.models.SignInInputClaims;
 import me.schoewe.b2crestapi.models.SignInOutputClaims;
 import me.schoewe.b2crestapi.models.SignUpCreateRemoteUserInputClaims;
@@ -110,12 +110,16 @@ public class MainController
 		//TODO validate user is not already in legacy IdP
 		
 		//TODO validate user is in CRM system or can bypass this validation
-
+		
+		
         // Example: Run an input validation and return CONFLICT (409) status if validation fails 
         if (input.getFirstName().toLowerCase().equals("kimaya")) {
-        	return new ResponseEntity<>(
-        			new B2CResponseContent("No 'Kimayas' allowed!", HttpStatus.CONFLICT),
-        			HttpStatus.CONFLICT);
+        	SignUpValidateOutputClaims output = new SignUpValidateOutputClaims(
+        			"No 'Kimayas' allowed!", 
+        			HttpStatus.CONFLICT, 
+        			"");
+        	
+        	return new ResponseEntity<>(output, HttpStatus.valueOf(output.getStatus()));
         }
 
         // Example. Add custom claims to new user
@@ -124,7 +128,11 @@ public class MainController
 //        outputClaims.setLoyaltyNumber("random123");
 
         // Return the output claim(s)
-        return new ResponseEntity<>(new B2CResponseContent("success", HttpStatus.OK), HttpStatus.OK);
+    	SignUpValidateOutputClaims output = new SignUpValidateOutputClaims(
+    			"success", 
+    			HttpStatus.OK, 
+    			"");
+        return new ResponseEntity<>(output, HttpStatus.valueOf(output.getStatus()));
 	}
 	
 	@PostMapping(path= "/createRemoteUser", consumes = "application/json", produces = "application/json")
@@ -143,11 +151,13 @@ public class MainController
 		// If there is a failure creating the remote IdP user, we need to return a 409/conflict status instead of 200/ok
 		
 		// Reply to B2C with the otherIdPUserId so it can include that in B2C when it creates it's own version of the user
-        SignUpCreateRemoteUserOutputClaims outputClaims = new SignUpCreateRemoteUserOutputClaims();
-        outputClaims.setOtherIdpUserId(otherIdpUserId);
+        SignUpCreateRemoteUserOutputClaims output = new SignUpCreateRemoteUserOutputClaims(
+        		"otherIdpUserId added",
+        		HttpStatus.OK,
+        		otherIdpUserId);
 
         // Return the output claim(s)
-        return new ResponseEntity<>(outputClaims, HttpStatus.OK);
+        return new ResponseEntity<>(output, HttpStatus.valueOf(output.getStatus()));
 	}
 	
 	@ResponseBody

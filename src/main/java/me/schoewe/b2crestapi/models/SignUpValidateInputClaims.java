@@ -35,7 +35,7 @@ public class SignUpValidateInputClaims
 	
 	@Override
 	public String toString() {
-		return "InputClaimsMode [" + getEmail() + ", " + getFirstName() + ", " + getLastName() + "]";
+		return "SignUpValidateInputClaims [" + getEmail() + ", " + getFirstName() + ", " + getLastName() + "]";
 	}
     
     
