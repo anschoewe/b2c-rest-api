@@ -8,6 +8,8 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v1
+    - name: Docker Registry Login
+      run: docker login myacrschoewe.azurecr.io --username 1a2115d1-c6e5-415c-ae7a-42a5675adcd5 --password B?+]vaRCd.XEoBzNluI1BPpc32YeQWX6
     - name: Set up JDK 1.8
       uses: actions/setup-java@v1
       with:
