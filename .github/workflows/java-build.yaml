@@ -16,7 +16,9 @@ jobs:
         java-version: 1.8
     - name: Build with Gradle
       run: ./gradlew build
-    - name: Build Docker image
-      run: docker build . --file Dockerfile --tag ${{ github.repository }}:$(date +%s)
-    - name: Tag Docker image
-      run: docker ${{ github.repository }}:$(date +%s) myacrschoewe.azurecr.io/${{ github.repository }}:$(date +%s)
+    - name: Build and Tag Docker image
+      env:
+        BUILD_ID: $(date +%s)
+      run: |
+        docker build . --file Dockerfile --tag ${{ github.repository }}:$(BUILD_ID)
+        docker tag ${{ github.repository }}:$(BUILD_ID) myacrschoewe.azurecr.io/${{ github.repository }}:$(BUILD_ID)
