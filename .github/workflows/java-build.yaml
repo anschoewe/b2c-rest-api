@@ -21,3 +21,4 @@ jobs:
         BUILD_ID=$(date +%s)
         docker build . --file Dockerfile --tag ${{ github.repository }}:$BUILD_ID
         docker tag ${{ github.repository }}:$BUILD_ID myacrschoewe.azurecr.io/${{ github.repository }}:$BUILD_ID
+        docker push myacrschoewe.azurecr.io/${{ github.repository }}:$BUILD_ID
